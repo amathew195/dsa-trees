@@ -5,6 +5,7 @@ const { BinaryTree, BinaryTreeNode } = require("./tree-binary");
 let smallTree;
 let largeTree;
 let emptyTree;
+let ourTree;
 
 beforeEach(function () {
   emptyTree = new BinaryTree();
@@ -46,6 +47,35 @@ beforeEach(function () {
   largeTree = new BinaryTree(root);
 });
 
+  // build our own complex tree
+  //
+  //                  root
+  //                   |
+  //                   6
+  //                /     \
+  //               5       5
+  //              /         \
+  //             4           3
+  //            /          /  \
+  //           3          2    1
+  //         /   \       /
+  //        2     1     1
+  //
+
+  let node10 = new BinaryTreeNode(1); //
+  let node9 = new BinaryTreeNode(1); //
+  let node8 = new BinaryTreeNode(2); //
+  let node7 = new BinaryTreeNode(1); //
+  let node6 = new BinaryTreeNode(2, node10); //
+  let node5 = new BinaryTreeNode(3, node8, node9); //
+  let node4 = new BinaryTreeNode(3, node6, node7); //
+  let node3 = new BinaryTreeNode(4, node5); //
+  let node2 = new BinaryTreeNode(5, null, node4); //
+  let node1 = new BinaryTreeNode(5, node3); //
+  let root = new BinaryTreeNode(6, node1, node2); //
+  ourTree = new BinaryTree(root);
+
+
 describe("minDepth", function () {
   it("handles simple trees", function () {
     expect(smallTree.minDepth()).toBe(2);
@@ -58,6 +88,10 @@ describe("minDepth", function () {
   it("handles empty trees", function () {
     expect(emptyTree.minDepth()).toBe(0);
   });
+
+  it("handles our tree", function () {
+    expect(ourTree.minDepth()).toBe(4);
+  })
 });
 
 describe("maxDepth", function () {
@@ -72,60 +106,63 @@ describe("maxDepth", function () {
   it("handles empty trees", function () {
     expect(emptyTree.maxDepth()).toBe(0);
   });
+
+  it("handles our tree", function () {
+    expect(ourTree.maxDepth()).toBe(5);
+  })
 });
 
-describe("nextLarger", function () {
-  it("handles simple trees", function () {
-    expect(smallTree.nextLarger(4)).toBe(5);
-    expect(smallTree.nextLarger(5)).toBe(6);
-    expect(smallTree.nextLarger(6)).toBe(null);
-  });
+// describe("nextLarger", function () {
+//   it("handles simple trees", function () {
+//     expect(smallTree.nextLarger(4)).toBe(5);
+//     expect(smallTree.nextLarger(5)).toBe(6);
+//     expect(smallTree.nextLarger(6)).toBe(null);
+//   });
 
-  it("handles empty trees", function () {
-    expect(emptyTree.nextLarger(0)).toBe(null);
-  });
+//   it("handles empty trees", function () {
+//     expect(emptyTree.nextLarger(0)).toBe(null);
+//   });
 
-  it("handles more complex trees", function () {
-    expect(largeTree.nextLarger(1)).toBe(2);
-    expect(largeTree.nextLarger(2)).toBe(3);
-    expect(largeTree.nextLarger(3)).toBe(5);
-    expect(largeTree.nextLarger(4)).toBe(5);
-    expect(largeTree.nextLarger(5)).toBe(6);
-    expect(largeTree.nextLarger(6)).toBe(null);
-  });
-});
+//   it("handles more complex trees", function () {
+//     expect(largeTree.nextLarger(1)).toBe(2);
+//     expect(largeTree.nextLarger(2)).toBe(3);
+//     expect(largeTree.nextLarger(3)).toBe(5);
+//     expect(largeTree.nextLarger(4)).toBe(5);
+//     expect(largeTree.nextLarger(5)).toBe(6);
+//     expect(largeTree.nextLarger(6)).toBe(null);
+//   });
+// });
 
-describe("areCousins", function () {
-  it("returns true if they are cousins, false if not", function () {
-    // build tree with cousins
-    //
-    //                  root
-    //                    |
-    //                    1
-    //                 /     \
-    //               2         3
-    //             /   \     /   \
-    //            4     5   6     7
-    //
+// describe("areCousins", function () {
+//   it("returns true if they are cousins, false if not", function () {
+//     // build tree with cousins
+//     //
+//     //                  root
+//     //                    |
+//     //                    1
+//     //                 /     \
+//     //               2         3
+//     //             /   \     /   \
+//     //            4     5   6     7
+//     //
 
-    let n7 = new BinaryTreeNode(7);
-    let n6 = new BinaryTreeNode(6);
-    let n5 = new BinaryTreeNode(5);
-    let n4 = new BinaryTreeNode(4);
-    let n3 = new BinaryTreeNode(3, n6, n7);
-    let n2 = new BinaryTreeNode(2, n4, n5);
-    let root = new BinaryTreeNode(1, n2, n3);
-    let tree = new BinaryTree(root);
+//     let n7 = new BinaryTreeNode(7);
+//     let n6 = new BinaryTreeNode(6);
+//     let n5 = new BinaryTreeNode(5);
+//     let n4 = new BinaryTreeNode(4);
+//     let n3 = new BinaryTreeNode(3, n6, n7);
+//     let n2 = new BinaryTreeNode(2, n4, n5);
+//     let root = new BinaryTreeNode(1, n2, n3);
+//     let tree = new BinaryTree(root);
 
-    expect(tree.areCousins(n4, n6)).toBe(true);
-    expect(tree.areCousins(n4, n7)).toBe(true);
-    expect(tree.areCousins(n5, n6)).toBe(true);
-    expect(tree.areCousins(n5, n7)).toBe(true);
-    expect(tree.areCousins(n2, n3)).toBe(false);
-    expect(tree.areCousins(n4, n5)).toBe(false);
-    expect(tree.areCousins(n6, n7)).toBe(false);
-    expect(tree.areCousins(n4, n3)).toBe(false);
-    expect(tree.areCousins(root, n3)).toBe(false);
-  });
-});
-
+//     expect(tree.areCousins(n4, n6)).toBe(true);
+//     expect(tree.areCousins(n4, n7)).toBe(true);
+//     expect(tree.areCousins(n5, n6)).toBe(true);
+//     expect(tree.areCousins(n5, n7)).toBe(true);
+//     expect(tree.areCousins(n2, n3)).toBe(false);
+//     expect(tree.areCousins(n4, n5)).toBe(false);
+//     expect(tree.areCousins(n6, n7)).toBe(false);
+//     expect(tree.areCousins(n4, n3)).toBe(false);
+//     expect(tree.areCousins(root, n3)).toBe(false);
+//   });
+// });
