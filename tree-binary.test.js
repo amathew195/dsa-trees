@@ -1,12 +1,12 @@
 "use strict";
 
-const { BinaryTree, BinaryTreeNode } = require("./binary-tree");
+const { BinaryTree, BinaryTreeNode } = require("./tree-binary");
 
 let smallTree;
 let largeTree;
 let emptyTree;
 
-beforeEach(function() {
+beforeEach(function () {
   emptyTree = new BinaryTree();
 
   // build small tree
@@ -46,46 +46,46 @@ beforeEach(function() {
   largeTree = new BinaryTree(root);
 });
 
-describe("minDepth", function() {
-  it("handles simple trees", function() {
+describe("minDepth", function () {
+  it("handles simple trees", function () {
     expect(smallTree.minDepth()).toBe(2);
   });
 
-  it("handles more complex trees", function() {
+  it("handles more complex trees", function () {
     expect(largeTree.minDepth()).toBe(2);
   });
 
-  it("handles empty trees", function() {
+  it("handles empty trees", function () {
     expect(emptyTree.minDepth()).toBe(0);
   });
 });
 
-describe("maxDepth", function() {
-  it("handles simple trees", function() {
+describe("maxDepth", function () {
+  it("handles simple trees", function () {
     expect(smallTree.maxDepth()).toBe(2);
   });
 
-  it("handles more complex trees", function() {
+  it("handles more complex trees", function () {
     expect(largeTree.maxDepth()).toBe(4);
   });
 
-  it("handles empty trees", function() {
+  it("handles empty trees", function () {
     expect(emptyTree.maxDepth()).toBe(0);
   });
 });
 
-describe("nextLarger", function() {
-  it("handles simple trees", function() {
+describe("nextLarger", function () {
+  it("handles simple trees", function () {
     expect(smallTree.nextLarger(4)).toBe(5);
     expect(smallTree.nextLarger(5)).toBe(6);
     expect(smallTree.nextLarger(6)).toBe(null);
   });
 
-  it("handles empty trees", function() {
+  it("handles empty trees", function () {
     expect(emptyTree.nextLarger(0)).toBe(null);
   });
 
-  it("handles more complex trees", function() {
+  it("handles more complex trees", function () {
     expect(largeTree.nextLarger(1)).toBe(2);
     expect(largeTree.nextLarger(2)).toBe(3);
     expect(largeTree.nextLarger(3)).toBe(5);
@@ -95,8 +95,8 @@ describe("nextLarger", function() {
   });
 });
 
-describe("areCousins", function() {
-  it("returns true if they are cousins, false if not", function() {
+describe("areCousins", function () {
+  it("returns true if they are cousins, false if not", function () {
     // build tree with cousins
     //
     //                  root
