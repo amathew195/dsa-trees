@@ -13,12 +13,22 @@ class BinaryTreeNode {
    * the length of the shortest path from the invoking node to a leaf. */
   minDepth() {
 
-    let leftDepth = this.left ? this.left.minDepth() : 0;
-    // 6 -> 5.minDepth() - 1
-    // 5 -> 0 - 2
-    let rightDepth = this.right ? this.right.minDepth() : 0;
-    // 6 -> 5.minDepth() - 1
-    // 5 -> 0 - 2
+    if (!this.left && !this.right) { return 1; }
+    // let rightDepth = this.right ? this.right.minDepth() : 0;
+    // let leftDepth = this.left ? this.left.minDepth() : 0;
+    let leftDepth;
+    let rightDepth;
+
+    if (!this.left) {
+      rightDepth = this.right.minDepth();
+      leftDepth = Infinity;
+    } else if (!this.right) {
+      leftDepth = this.left.minDepth();
+      rightDepth = Infinity;
+    } else {
+      rightDepth = this.right.minDepth();
+      leftDepth = this.left.minDepth();
+    }
 
     return Math.min(leftDepth, rightDepth) + 1;
   }
@@ -27,11 +37,7 @@ class BinaryTreeNode {
    * the length of the longest path from the invoking node to a leaf. */
   maxDepth() {
     let leftDepth = this.left ? this.left.maxDepth() : 0;
-    // 6 -> 5.minDepth() - 1
-    // 5 -> 0 - 2
     let rightDepth = this.right ? this.right.maxDepth() : 0;
-    // 6 -> 5.minDepth() - 1
-    // 5 -> 0 - 2
 
     return Math.max(leftDepth, rightDepth) + 1;
   }
@@ -48,7 +54,7 @@ class BinaryTree {
   // this is a stack or recursion problem; we'll use recursion
 
   minDepth() {
-    if(!this.root) return 0;
+    if (!this.root) return 0;
 
     return this.root.minDepth();
   }
@@ -59,7 +65,7 @@ class BinaryTree {
   // this is a stack or recursion problem; we'll use recursion
 
   maxDepth() {
-    if(!this.root) return 0;
+    if (!this.root) return 0;
 
     return this.root.maxDepth();
   }

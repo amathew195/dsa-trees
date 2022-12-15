@@ -47,33 +47,33 @@ beforeEach(function () {
   largeTree = new BinaryTree(root);
 });
 
-  // build our own complex tree
-  //
-  //                  root
-  //                   |
-  //                   6
-  //                /     \
-  //               5       5
-  //              /         \
-  //             4           3
-  //            /          /  \
-  //           3          2    1
-  //         /   \       /
-  //        2     1     1
-  //
+// build our own complex tree
+//
+//                  root
+//                   |
+//                   6
+//                /     \
+//               5       5
+//              /         \
+//             4           3
+//            /          /  \
+//           3          2    1
+//         /   \       /
+//        2     1     1
+//
 
-  let node10 = new BinaryTreeNode(1); //
-  let node9 = new BinaryTreeNode(1); //
-  let node8 = new BinaryTreeNode(2); //
-  let node7 = new BinaryTreeNode(1); //
-  let node6 = new BinaryTreeNode(2, node10); //
-  let node5 = new BinaryTreeNode(3, node8, node9); //
-  let node4 = new BinaryTreeNode(3, node6, node7); //
-  let node3 = new BinaryTreeNode(4, node5); //
-  let node2 = new BinaryTreeNode(5, null, node4); //
-  let node1 = new BinaryTreeNode(5, node3); //
-  let root = new BinaryTreeNode(6, node1, node2); //
-  ourTree = new BinaryTree(root);
+let node10 = new BinaryTreeNode(1); //
+let node9 = new BinaryTreeNode(1); //
+let node8 = new BinaryTreeNode(2); //
+let node7 = new BinaryTreeNode(1); //
+let node6 = new BinaryTreeNode(2, node10); //
+let node5 = new BinaryTreeNode(3, node8, node9); //
+let node4 = new BinaryTreeNode(3, node6, node7); //
+let node3 = new BinaryTreeNode(4, node5); //
+let node2 = new BinaryTreeNode(5, null, node4); //
+let node1 = new BinaryTreeNode(5, node3); //
+let root = new BinaryTreeNode(6, node1, node2); //
+ourTree = new BinaryTree(root);
 
 
 describe("minDepth", function () {
@@ -91,7 +91,7 @@ describe("minDepth", function () {
 
   it("handles our tree", function () {
     expect(ourTree.minDepth()).toBe(4);
-  })
+  });
 });
 
 describe("maxDepth", function () {
@@ -109,7 +109,7 @@ describe("maxDepth", function () {
 
   it("handles our tree", function () {
     expect(ourTree.maxDepth()).toBe(5);
-  })
+  });
 });
 
 // describe("nextLarger", function () {
