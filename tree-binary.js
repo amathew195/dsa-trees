@@ -30,7 +30,7 @@ class BinaryTreeNode {
       leftDepth = this.left.minDepth();
     }
 
-    return Math.min(leftDepth, rightDepth) + 1;
+    return 1 + Math.min(leftDepth, rightDepth);
   }
 
   /** maxDepth(): return the maximum depth from the invoking node -- that is,
@@ -39,7 +39,7 @@ class BinaryTreeNode {
     let leftDepth = this.left ? this.left.maxDepth() : 0;
     let rightDepth = this.right ? this.right.maxDepth() : 0;
 
-    return Math.max(leftDepth, rightDepth) + 1;
+    return 1 + Math.max(leftDepth, rightDepth);
   }
 }
 
